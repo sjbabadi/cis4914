@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">cis4914</string>
+    <string name="video_url">https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4</string>
+    <string name="user_tracks_title">Tracks</string>
 </resources>

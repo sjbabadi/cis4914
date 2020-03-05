@@ -3,11 +3,13 @@ package com.sjbabadi.cis4914;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private TextInputLayout textUsernameLayout;
     private TextInputLayout textPasswordInput;
     private Button loginButton;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         textPasswordInput.getEditText()
                 .addTextChangedListener(createTextWatcher(textPasswordInput));
+
+        progressBar = findViewById(R.id.progressBar);
     }
 
     private void showErrorDialog() {
@@ -65,7 +70,24 @@ public class MainActivity extends AppCompatActivity {
             textPasswordInput.setError("Please enter a password");
         } else if (!isValidCredential(username, password)) {
             showErrorDialog();
+        } else {
+            performLogin();
         }
+    }
+
+    private void performLogin() {
+        textUsernameLayout.setEnabled(false);
+        textPasswordInput.setEnabled(false);
+        loginButton.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+        startUserActivity();
+        finish();
+
+    }
+
+    private void startUserActivity() {
+        Intent i = new Intent(this, UserDashActivity.class);
+        startActivity(i);
     }
 
     private boolean isValidCredential(String user, String pwd) {

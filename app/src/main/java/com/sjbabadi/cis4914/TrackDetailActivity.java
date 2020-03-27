@@ -6,21 +6,16 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class UserDashActivity extends AppCompatActivity {
+public class TrackDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_dash);
+        setContentView(R.layout.activity_track_detail);
     }
 
-    public void startPlayer(View view) {
+    public void startVideoPlayer(View view) {
         Intent i = new Intent(this, MediaPlayerActivity.class);
-        startActivity(i);
-    }
-
-    public void startTrackDetail(View view) {
-        Intent i = new Intent(this, TrackDetailActivity.class);
         startActivity(i);
     }
 }

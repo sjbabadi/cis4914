@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "896991509635",
+    "firebase_url": "https://cis4914.firebaseio.com",
+    "project_id": "cis4914",
+    "storage_bucket": "cis4914.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896991509635:android:c1310a0851fee4eceb2fb6",
+        "android_client_info": {
+          "package_name": "com.sjbabadi.cis4914"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896991509635-b2fqcs4qnca7uqvqprrq7ao98pom126k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANKBfTQMwYXccha139A_UtCIaF_N14HuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896991509635-b2fqcs4qnca7uqvqprrq7ao98pom126k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

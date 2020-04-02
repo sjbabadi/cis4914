@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beige"
     android:orientation="vertical"
     tools:context="com.sjbabadi.cis4914.TrackDetailActivity">
 
@@ -12,7 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Relaxation Exercises"
-        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="24sp"
         android:layout_margin="16dp" />
 
     <LinearLayout
@@ -22,7 +23,9 @@
         android:background="@drawable/layout_border"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:gravity="center">
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,7 +46,8 @@
         android:background="@drawable/layout_border"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
@@ -64,7 +68,8 @@
         android:background="@drawable/layout_border"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
@@ -85,7 +90,8 @@
         android:background="@drawable/layout_border"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
@@ -106,7 +112,8 @@
         android:background="@drawable/layout_border"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
@@ -127,7 +134,8 @@
         android:background="@drawable/layout_border"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"

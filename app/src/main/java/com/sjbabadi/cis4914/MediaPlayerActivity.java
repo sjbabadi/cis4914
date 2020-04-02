@@ -1,103 +1,118 @@
 package com.sjbabadi.cis4914;
 
-import android.annotation.SuppressLint;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.ProgressiveMediaSource;
-import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.util.Util;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 
 
-public class MediaPlayerActivity extends AppCompatActivity {
+public class MediaPlayerActivity extends YouTubeBaseActivity
+            implements YouTubePlayer.OnInitializedListener {
 
-    private PlayerView playerView;
-    private SimpleExoPlayer player;
-
-    private boolean playWhenReady = true;
-    private int currentWindow = 0;
-    private long playbackPosition = 0;
+    static final String GOOGLE_API_KEY = "AIzaSyAOglB-9xDGOHWatnhbxyHCOVi49h9coNg";
+    static final String YOUTUBE_VIDEO_ID = "X3LlU8TeBZo";
+    private static final String TAG = "MediaPlayerActivity";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_media_player);
-        playerView = findViewById(R.id.video_view);
-    }
+        ConstraintLayout layout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_media_player, null);
+        setContentView(layout);
 
-    private void initializePlayer() {
-        player = ExoPlayerFactory.newSimpleInstance(this);
-        playerView.setPlayer(player);
-        Uri uri = Uri.parse(getString(R.string.video_url));
-        MediaSource mediaSource = buildMediaSource(uri);
-    }
-
-    private MediaSource buildMediaSource(Uri uri) {
-        DataSource.Factory dataSourceFactory =
-                new DefaultDataSourceFactory(this, "cis4914");
-        return new ProgressiveMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(uri);
+        YouTubePlayerView playerView = new YouTubePlayerView(this);
+        playerView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        layout.addView(playerView);
+        playerView.initialize(GOOGLE_API_KEY, this);
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        if (Util.SDK_INT >= 24) {
-            initializePlayer();
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
+        Log.d(TAG, "onInitializationSuccess: provider is " + provider.getClass().toString());
+        Toast.makeText(this, "Initialized Youtube Player successfully", Toast.LENGTH_LONG).show();
+
+        youTubePlayer.setPlaybackEventListener(playbackEventListener);
+        youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
+
+        if(!wasRestored) {
+            youTubePlayer.cueVideo(YOUTUBE_VIDEO_ID);
         }
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        hideSystemUi();
-        if ((Util.SDK_INT < 24 || player == null)) {
-            initializePlayer();
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+        final int REQUEST_CODE = 1;
+
+        if(youTubeInitializationResult.isUserRecoverableError()) {
+            youTubeInitializationResult.getErrorDialog(this, REQUEST_CODE).show();
+        } else {
+            String errorMessage = String.format("There was an error initializing the YoutubePlayer (%1$s)", youTubeInitializationResult.toString());
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
         }
     }
 
-    @SuppressLint("InlinedApi")
-    private void hideSystemUi() {
-        playerView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (Util.SDK_INT < 24) {
-            releasePlayer();
+    private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
+        @Override
+        public void onPlaying() {
+            Toast.makeText(MediaPlayerActivity.this, "Good, video is playing ok", Toast.LENGTH_LONG).show();
         }
-    }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (Util.SDK_INT >= 24) {
-            releasePlayer();
+        @Override
+        public void onPaused() {
+            Toast.makeText(MediaPlayerActivity.this, "Video has paused", Toast.LENGTH_LONG).show();
         }
-    }
 
-
-    private void releasePlayer() {
-        if (player != null) {
-            playWhenReady = player.getPlayWhenReady();
-            playbackPosition = player.getCurrentPosition();
-            currentWindow = player.getCurrentWindowIndex();
-            player.release();
-            player = null;
+        @Override
+        public void onStopped() {
+            Toast.makeText(MediaPlayerActivity.this, "Video has stopped", Toast.LENGTH_LONG).show();
         }
-    }
+
+        @Override
+        public void onBuffering(boolean b) {
+
+        }
+
+        @Override
+        public void onSeekTo(int i) {
+
+        }
+    };
+
+    private YouTubePlayer.PlayerStateChangeListener playerStateChangeListener = new YouTubePlayer.PlayerStateChangeListener() {
+        @Override
+        public void onLoading() {
+
+        }
+
+        @Override
+        public void onLoaded(String s) {
+
+        }
+
+        @Override
+        public void onAdStarted() {
+
+        }
+
+        @Override
+        public void onVideoStarted() {
+            Toast.makeText(MediaPlayerActivity.this, "Video has started", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onVideoEnded() {
+            Toast.makeText(MediaPlayerActivity.this, "Congratulations! You've completed another video.", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onError(YouTubePlayer.ErrorReason errorReason) {
+
+        }
+    };
 }

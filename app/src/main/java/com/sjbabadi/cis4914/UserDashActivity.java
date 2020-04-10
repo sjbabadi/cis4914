@@ -45,7 +45,6 @@ public class UserDashActivity extends AppCompatActivity {
             case R.id.sign_out:
                 AuthUI.getInstance().signOut(this);
                 startActivity(new Intent(this, MainActivity.class));
-                re
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

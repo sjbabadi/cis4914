@@ -20,7 +20,7 @@
 
 
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/ufBlue</item>
         <item name="colorSecondary">@color/beige</item>
         <item name="colorPrimaryDark">@color/coolGray</item>

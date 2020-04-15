@@ -19,10 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <provider-->
-<!--            android:name=".data.DBProvider"-->
-<!--            android:authorities="com.sjbabadi.cis4914"-->
-<!--            android:exported="false" />-->
     </application>
 
 </manifest>

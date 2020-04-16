@@ -12,6 +12,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+//import com.sjbabadi.cis4914.data.AppDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //AppDatabase appDatabase = AppDatabase.getInstance(this);
+        //final SQLiteDatabase db = appDatabase.getReadableDatabase();
 
         // initialize Firebase components
         mFireBaseAuth = FirebaseAuth.getInstance();

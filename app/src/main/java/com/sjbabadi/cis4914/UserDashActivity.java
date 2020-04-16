@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -43,7 +42,7 @@ public class UserDashActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sign_out:
-                AuthUI.getInstance().signOut(this);
+                FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:

@@ -94,7 +94,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="10dp"
-                        android:text="Track 1"
+                        android:text="Stress Relief"
                         android:textSize="24sp" />
 
                 </RelativeLayout>
@@ -118,7 +118,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="10dp"
-                        android:text="Track 2"
+                        android:text="Anxiety"
                         android:textSize="24sp" />
 
                 </RelativeLayout>
@@ -134,7 +134,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            >
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
@@ -154,7 +155,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="10dp"
-                        android:text="Track 3"
+                        android:text="Mindfulness"
                         android:textSize="24sp" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -177,7 +178,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="10dp"
-                        android:text="Track 4"
+                        android:text="Movement"
                         android:textSize="24sp" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -211,7 +212,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="10dp"
-                        android:text="Track 5"
+                        android:text="Sleep Aid"
                         android:textSize="24sp" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -234,7 +235,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="10dp"
-                        android:text="Track 6"
+                        android:text="Gratitude"
                         android:textSize="24sp" />
 
                 </RelativeLayout>

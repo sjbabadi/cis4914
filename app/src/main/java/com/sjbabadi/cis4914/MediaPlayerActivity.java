@@ -1,10 +1,16 @@
 package com.sjbabadi.cis4914;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -19,6 +25,7 @@ public class MediaPlayerActivity extends YouTubeBaseActivity
     static final String GOOGLE_API_KEY = "AIzaSyAOglB-9xDGOHWatnhbxyHCOVi49h9coNg";
     static final String YOUTUBE_VIDEO_ID = "X3LlU8TeBZo";
     private static final String TAG = "MediaPlayerActivity";
+    private Button back_button;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,16 +33,44 @@ public class MediaPlayerActivity extends YouTubeBaseActivity
         ConstraintLayout layout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_media_player, null);
         setContentView(layout);
 
+        back_button = findViewById(R.id.back_button);
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         YouTubePlayerView playerView = new YouTubePlayerView(this);
-        playerView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        lp.topMargin = 80;
+        playerView.setLayoutParams(lp);
         layout.addView(playerView);
         playerView.initialize(GOOGLE_API_KEY, this);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navigate_back, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.back:
+                startActivity(new Intent(this, TrackDetailActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
         Log.d(TAG, "onInitializationSuccess: provider is " + provider.getClass().toString());
-        Toast.makeText(this, "Initialized Youtube Player successfully", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Initialized Youtube Player successfully", Toast.LENGTH_LONG).show();
 
         youTubePlayer.setPlaybackEventListener(playbackEventListener);
         youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
@@ -60,17 +95,17 @@ public class MediaPlayerActivity extends YouTubeBaseActivity
     private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
         @Override
         public void onPlaying() {
-            Toast.makeText(MediaPlayerActivity.this, "Good, video is playing ok", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MediaPlayerActivity.this, "Good, video is playing ok", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onPaused() {
-            Toast.makeText(MediaPlayerActivity.this, "Video has paused", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MediaPlayerActivity.this, "Video has paused", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onStopped() {
-            Toast.makeText(MediaPlayerActivity.this, "Video has stopped", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MediaPlayerActivity.this, "Video has stopped", Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -102,12 +137,12 @@ public class MediaPlayerActivity extends YouTubeBaseActivity
 
         @Override
         public void onVideoStarted() {
-            Toast.makeText(MediaPlayerActivity.this, "Video has started", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MediaPlayerActivity.this, "Video has started", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onVideoEnded() {
-            Toast.makeText(MediaPlayerActivity.this, "Congratulations! You've completed another video.", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MediaPlayerActivity.this, "Congratulations! You've completed another video.", Toast.LENGTH_LONG).show();
         }
 
         @Override

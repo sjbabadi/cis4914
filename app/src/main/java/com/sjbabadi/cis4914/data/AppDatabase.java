@@ -31,27 +31,31 @@ class AppDatabase  extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sSQL;
-        sSQL = "CREATE TABLE " + VideosContract.TABLE_NAME + " (" +
-                VideosContract.Columns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                VideosContract.Columns.VIDEO_NAME + " TEXT, " +
-                VideosContract.Columns.LINK + " TEXT NOT NULL, " +
-                VideosContract.Columns.TRACK_ID + " INTEGER NOT NULL, " +
+        sSQL = "CREATE TABLE IF NOT EXISTS " + VideosContract.TABLE_NAME + " (" +
+                VideosContract.VideoEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                VideosContract.VideoEntry.VIDEO_NAME + " TEXT, " +
+                VideosContract.VideoEntry.LINK + " TEXT NOT NULL, " +
+                VideosContract.VideoEntry.TRACK_ID + " INTEGER NOT NULL, " +
                 "FOREIGN KEY (track_id)\n" +
                 "\t\tREFERENCES tracks (_id)\n" +
                 ");";
         db.execSQL(sSQL);
-        sSQL = "CREATE TABLE tracks (\n" +
-                "\t_id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "\tname TEXT\n" +
+
+        sSQL = "CREATE TABLE IF NOT EXISTS tracks (" +
+                TracksContract.TrackEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TracksContract.TrackEntry.TRACK_NAME + " TEXT" +
                 ");";
         db.execSQL(sSQL);
-        sSQL = "CREATE TABLE users (\n" +
-                "\t_id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "\tname TEXT,\n" +
-                "\temail TEXT\n" +
-                ")";
+
+        sSQL = "CREATE TABLE IF NOT EXISTS users (\n" +
+                UsersContract.UserEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                 UsersContract.UserEntry.USER_NAME + " TEXT, " +
+                 UsersContract.UserEntry.EMAIL + " TEXT, " +
+                 UsersContract.UserEntry.ADMIN + " INTEGER" +
+                ");";
         db.execSQL(sSQL);
-        sSQL = "CREATE TABLE users_tracks(\n" +
+
+        sSQL = "CREATE TABLE IF NOT EXISTS users_tracks(\n" +
                 "\ttrack_id INTEGER NOT NULL,\n" +
                 "\tuser_id INTEGER NOT NULL,\n" +
                 "\tFOREIGN KEY (track_id)\n" +

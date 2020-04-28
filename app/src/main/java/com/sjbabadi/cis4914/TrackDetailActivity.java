@@ -12,10 +12,14 @@ public class TrackDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_detail);
+
     }
+
+
 
     public void startVideoPlayer(View view) {
         Intent i = new Intent(this, MediaPlayerActivity.class);
+        i.putExtra("vid_link", "");
         startActivity(i);
     }
 }

@@ -23,6 +23,14 @@ public class TrackDetailActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_track_detail);
         contentResolver = getContentResolver();
 
+        //set click listeners
+        findViewById(R.id.guided_imagery).setOnClickListener(this);
+        findViewById(R.id.deep_breathing).setOnClickListener(this);
+        findViewById(R.id.body_scan).setOnClickListener(this);
+        findViewById(R.id.mindfulness).setOnClickListener(this);
+        findViewById(R.id.guided_meditation).setOnClickListener(this);
+        findViewById(R.id.progressive_muscle_relaxation).setOnClickListener(this);
+
 
     }
 
@@ -38,6 +46,7 @@ public class TrackDetailActivity extends AppCompatActivity implements View.OnCli
                     String link = findLink.getString(2);
                     startVideoPlayer(link);
                 }
+                findLink.close();
 
             case R.id.guided_meditation:
                 findLink = contentResolver.query(VideosContract.VideoEntry.CONTENT_URI,
@@ -46,6 +55,7 @@ public class TrackDetailActivity extends AppCompatActivity implements View.OnCli
                     String link = findLink.getString(2);
                     startVideoPlayer(link);
                 }
+                findLink.close();
             case R.id.body_scan:
                 findLink = contentResolver.query(VideosContract.VideoEntry.CONTENT_URI,
                         projection, "name=?",  new String[] {"Body Scan Meditation"}, null, null);
@@ -53,6 +63,7 @@ public class TrackDetailActivity extends AppCompatActivity implements View.OnCli
                     String link = findLink.getString(2);
                     startVideoPlayer(link);
                 }
+                findLink.close();
             case R.id.deep_breathing:
                 findLink = contentResolver.query(VideosContract.VideoEntry.CONTENT_URI,
                         projection, "name=?",  new String[] {"Deep Breathing"}, null, null);
@@ -60,6 +71,7 @@ public class TrackDetailActivity extends AppCompatActivity implements View.OnCli
                     String link = findLink.getString(2);
                     startVideoPlayer(link);
                 }
+                findLink.close();
             case R.id.progressive_muscle_relaxation:
                 findLink = contentResolver.query(VideosContract.VideoEntry.CONTENT_URI,
                         projection, "name=?",  new String[] {"Progressive Muscle Relaxation"}, null, null);
@@ -67,6 +79,7 @@ public class TrackDetailActivity extends AppCompatActivity implements View.OnCli
                     String link = findLink.getString(2);
                     startVideoPlayer(link);
                 }
+                findLink.close();
             case R.id.mindfulness:
                 findLink = contentResolver.query(VideosContract.VideoEntry.CONTENT_URI,
                         projection, "name=?",  new String[] {"Mindfulness"}, null, null);
@@ -74,6 +87,7 @@ public class TrackDetailActivity extends AppCompatActivity implements View.OnCli
                     String link = findLink.getString(2);
                     startVideoPlayer(link);
                 }
+                findLink.close();
             default:
                 return;
         }

@@ -23,7 +23,7 @@ public class MediaPlayerActivity extends YouTubeBaseActivity
             implements YouTubePlayer.OnInitializedListener {
 
     static final String GOOGLE_API_KEY = "AIzaSyAOglB-9xDGOHWatnhbxyHCOVi49h9coNg";
-    static final String YOUTUBE_VIDEO_ID = "X3LlU8TeBZo";
+    String YOUTUBE_VIDEO_ID = getIntent().getStringExtra("vid_link");
     private static final String TAG = "MediaPlayerActivity";
     private Button back_button;
 

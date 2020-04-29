@@ -5,8 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-// only class that should access this is the ContentProvider
-class AppDatabase  extends SQLiteOpenHelper {
+public class AppDatabase  extends SQLiteOpenHelper {
     public static final String TAG = "AppDatabase";
 
     public static final String DB_NAME = "Mindfulness.db";
@@ -20,7 +19,7 @@ class AppDatabase  extends SQLiteOpenHelper {
     }
 
     //get an instance of the app's singleton DB helper object -- return SQLite DB Helper
-    static AppDatabase getInstance(Context context) {
+    public static AppDatabase getInstance(Context context) {
         if(instance == null) {
             instance = new AppDatabase(context);
         }
@@ -49,9 +48,9 @@ class AppDatabase  extends SQLiteOpenHelper {
 
         sSQL = "CREATE TABLE IF NOT EXISTS users (\n" +
                 UsersContract.UserEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                 UsersContract.UserEntry.USER_NAME + " TEXT, " +
-                 UsersContract.UserEntry.EMAIL + " TEXT, " +
-                 UsersContract.UserEntry.ADMIN + " INTEGER" +
+                UsersContract.UserEntry.USER_NAME + " TEXT, " +
+                UsersContract.UserEntry.EMAIL + " TEXT, " +
+                UsersContract.UserEntry.ADMIN + " INTEGER" +
                 ");";
         db.execSQL(sSQL);
 

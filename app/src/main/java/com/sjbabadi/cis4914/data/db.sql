@@ -17,7 +17,7 @@ CREATE TABLE users (
 	name TEXT,
 	email TEXT,
 	admin INTEGER
-)
+);
 
 CREATE TABLE users_tracks(
 	track_id INTEGER NOT NULL,

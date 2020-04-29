@@ -21,6 +21,7 @@
         android:layout_margin="16dp" />
 
     <LinearLayout
+        android:id="@+id/guided_imagery"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal"
@@ -28,8 +29,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        android:gravity="center"
-        android:onClick="startVideoPlayer">
+        android:gravity="center">
 
 
         <TextView
@@ -45,6 +45,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/deep_breathing"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal"
@@ -68,6 +69,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/progressive_muscle_relaxation"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal"
@@ -91,6 +93,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/mindfulness"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal"
@@ -114,6 +117,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/guided_meditation"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal"
@@ -137,6 +141,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/body_scan"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal"
